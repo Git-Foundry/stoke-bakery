@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://git-foundry.github.io/stoke-bakery/sitemap.xml
