@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stoke Bakery | Stoke-On-Trent</title>
+  <meta name="description" content="Stoke Bakery in Stoke-On-Trent. Fresh cakes, proper biscuits, and boiled sweets weighed out by hand. No frills, just good baking since the 1970s.">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Stoke Bakery">
+  <meta property="og:description" content="Stoke Bakery in Stoke-On-Trent. Fresh cakes, proper biscuits, and boiled sweets weighed out by hand. No frills, just good baking since the 1970s.">
+  <meta property="og:image" content="https://git-foundry.github.io/stoke-bakery/og-image.png">
+  <meta property="og:url" content="https://git-foundry.github.io/stoke-bakery/index.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* ========================================
+       BOLD AESTHETIC OVERRIDES
+       ======================================== */
+
+    /* ——— 1. Flat colour blocking ——— */
+    .hero-split__text {
+      background-color: #6b1a1a;
+      padding: var(--space-2xl) var(--space-xl);
+      position: relative;
+    }
+
+    .hero-split__text::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -60px;
+      width: 60px;
+      height: 100%;
+      background-color: #6b1a1a;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
+
+    .services-grid {
+      background-color: #faf8f8;
+      position: relative;
+    }
+
+    .services-grid::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background-color: #c44a4a;
+    }
+
+    .trust-bar {
+      background-color: #8b2a2a;
+      position: relative;
+    }
+
+    .trust-bar::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background-color: #8b2a2a;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+    }
+
+    .area-coverage {
+      background-color: #c44a4a;
+      color: #ffffff;
+    }
+
+    .faq-accordion {
+      background-color: #6b1a1a;
+      position: relative;
+    }
+
+    .faq-accordion::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background-color: #6b1a1a;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+    }
+
+    .contact-block {
+      background-color: #faf8f8;
+    }
+
+    .site-footer {
+      background-color: #2b1a1a;
+      border-top: 8px solid #c44a4a;
+    }
+
+    /* ——— 2. Bold typographic hierarchy ——— */
+    .hero-split__headline {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-split__sub {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      line-height: 1.5;
+      max-width: 50ch;
+    }
+
+    .services-grid__title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #6b1a1a;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .service-card {
+      border: none;
+      border-radius: 0;
+      position: relative;
+      padding: var(--space-xl);
+      transition: transform 0.25s ease;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
+      background-color: #c44a4a;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .service-card__title {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      color: #6b1a1a;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .service-card__desc,
+    .service-card__bullets li {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+    }
+
+    .trust-item__value {
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      letter-spacing: -0.04em;
+    }
+
+    .trust-item__label {
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      max-width: 16ch;
+    }
+
+    .area-coverage__title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .area-coverage__intro {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 60ch;
+    }
+
+    .area-tag {
+      background-color: transparent;
+      color: #ffffff;
+      border: 3px solid #ffffff;
+      border-radius: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--space-xs) var(--space-lg);
+      transition: all 0.25s ease;
+    }
+
+    .area-tag:hover {
+      background-color: #ffffff;
+      color: #c44a4a;
+    }
+
+    .faq-accordion__title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .faq-item {
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 0;
+    }
+
+    .faq-item__question {
+      font-size: 1.125rem;
+      text-transform: none;
+      min-height: 4rem;
+    }
+
+    .faq-item__answer p {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact-block__title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #6b1a1a;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-block__phone,
+    .contact-block__email,
+    .contact-block__address,
+    .contact-block__hours {
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+
+    .form-label {
+      font-size: 0.9375rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-input,
+    .form-textarea {
+      border: 3px solid rgba(107, 26, 26, 0.15);
+      border-radius: 0;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: #c44a4a;
+    }
+
+    .btn {
+      border-radius: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+
+    .btn--primary {
+      background-color: #c44a4a;
+      border-color: #c44a4a;
+    }
+
+    .btn--primary:hover {
+      background-color: #8b2a2a;
+      border-color: #8b2a2a;
+    }
+
+    /* ——— 3. Contrast & legibility fixes ——— */
+    .hero-split__sub {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .trust-item__label {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .faq-item__answer p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .site-footer__copy,
+    .site-footer__brand p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ——— 4. Geometric accents & shopfront energy ——— */
+    .hero-split__ctas {
+      margin-top: var(--space-xl);
+    }
+
+    .hero-split__ctas .btn {
+      min-height: 3.5rem;
+      padding: var(--space-sm) var(--space-xl);
+    }
+
+    .hero-split__ctas .btn--ghost {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .services-grid__cards {
+      gap: var(--space-xl);
+    }
+
+    .trust-bar__inner {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
+    }
+
+    /* ——— 5. Layout fixes ——— */
+    .hero-split__inner {
+      display: block;
+      padding-top: var(--space-3xl);
+      padding-bottom: var(--space-3xl);
+    }
+
+    .hero-split__text {
+      max-width: 900px;
+    }
+
+    .contact-block__inner {
+      gap: var(--space-3xl);
+    }
+
+    .site-footer__inner {
+      padding: var(--space-xl) 0;
+    }
+
+    /* ——— 11. Flat type hierarchy ——— */
+    @media (min-width: 700px) {
+      .hero-split__inner {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2xl);
+      }
+
+      .hero-split__text {
+        flex: 1 1 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-logo">Stoke Bakery</a>
+      <nav class="site-nav">
+        <ul class="site-nav__list">
+          <li><a href="index.html" class="site-nav__link">Home</a></li>
+          <li><a href="about.html" class="site-nav__link">About</a></li>
+          <li><a href="services.html" class="site-nav__link">Services</a></li>
+          <li><a href="contact.html" class="site-nav__link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+        <span class="mobile-menu-btn__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-split">
+      <div class="container hero-split__inner">
+        <div class="hero-split__text">
+          <h1 class="hero-split__headline">Cakes worth crossing Stoke-On-Trent for</h1>
+          <p class="hero-split__sub">Proper baked goods made fresh each morning. Custard creams, fruit cakes, and boiled sweets by the quarter — the kind your nan would recognise.</p>
+          <div class="hero-split__ctas">
+            <a href="#contact" class="btn btn--primary">Find us on Bucknall Road</a>
+            <a href mergetype="services" class="btn btn--ghost">Phone for orders</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-grid" id="services">
+      <div class="container">
+        <h2 class="services-grid__title">What we do</h2>
+        <div class="services-grid__cards">
+          <article class="service-card">
+            <h3 class="service-card__title">Cakes</h3>
+            <p class="service-card__desc">Whole fruit cakes, Victoria sponges, and lemon drizzles baked fresh each morning. We slice to order and box them in greaseproof paper, not Perspex domes.</p>
+            <ul class="service-card__bullets">
+              <li>Baked fresh before 7am</li>
+              <li>Sliced while you wait</li>
+              <li>Recipes unchanged for decades</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <h3 class="service-card__title">Biscuits</h3>
+            <p class="service-card__desc">Custard creams, ginger nuts, shortbread, and bourbons from the same cutters we've used for years. They crack properly in the teeth and leave crumbs on the tablecloth.</p>
+            <ul class="service-card__bullets">
+              <li>Baked in batches throughout the day</li>
+              <li>Sold loose by weight or number</li>
+              <li>Proper butter, not vegetable oil</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <h3 class="service-card__title">Cake Orders</h3>
+            <p class="service-card__desc">Birthday cakes, anniversary cakes, or just something specific you can't find on the shelf. Give us three days' notice and tell us who it's for and what they like.</p>
+            <ul class="service-card__bullets">
+              <li>Three-day turnaround minimum</li>
+              <li>Made to your specifications</li>
+              <li>Collected fresh on the day</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-bar">
+      <div class="container trust-bar__inner">
+        <div class="trust-item">
+          <span class="trust-item__value">50+</span>
+          <span class="trust-item__label">Same family recipes since the 1970s</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-item__value">100%</span>
+          <span class="trust-item__label">Flour from Potteries-based suppliers</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-item__value">Zero</span>
+          <span class="trust-item__label">No plastic packaging on loose goods</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-item__value">6am</span>
+          <span class="trust-item__label">Open early enough for shift workers</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="area-coverage">
+      <div class="container">
+        <h2 class="area-coverage__title">Where our regulars come from</h2>
+        <p class="area-coverage__intro">We're on the edge of Stoke-On-Trent city centre, with regulars coming in from Hanley, Burslem, Fenton, and as far as Newcastle-under-Lyme for specific orders.</p>
+        <ul class="area-coverage__tags">
+          <li class="area-tag">Stoke-On-Trent</li>
+          <li class="area-tag">Hanley</li>
+          <li class="area-tag">Burslem</li>
+          <li class="area-tag">Fenton</li>
+          <li class="area-tag">Newcastle-under-Lyme</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faq-accordion">
+      <div class="container">
+        <h2 class="faq-accordion__title">Questions we've answered a thousand times</h2>
+        <div class="faq-accordion__list">
+          <details class="faq-item">
+            <summary class="faq-item__question">What time do you bake the fresh cakes?</summary>
+            <div class="faq-item__answer"><p>Everything's out of the oven by 7am, six days a week. Sunday we open later with whatever's left from Saturday.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Can I order a birthday cake with specific writing on it?</summary>
+            <div class="faq-item__answer"><p>Yes. Three days' notice, and we'll pipe whatever you need. We've done everything from 'Happy 90th Doris' to 'Sorry About Your Cat'.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Do you do gluten-free or vegan options?</summary>
+            <div class="faq-item__answer"><p>Not as a regular thing. Our flour supplier doesn't do the substitute lines, and we won't sell what we can't bake properly.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">How long do your biscuits stay fresh?</summary>
+            <div class="faq-item__answer"><p>In the tin, a week. In our paper bags on the counter, three days. In your mouth, about thirty seconds.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Can I buy sweets by the specific weight?</summary>
+            <div class="faq-item__answer"><p>We do quarter-pound, half-pound, or full-pound paper bags. You point at what you want behind the glass, we weigh it while you watch.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Do you deliver cake orders?</summary>
+            <div class="faq-item__answer"><p>Collection only. The cakes travel better that way, and it keeps the price where it should be.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">What's the oldest recipe you still use?</summary>
+            <div class="faq-item__answer"><p>The rich fruit cake. We've got the handwritten card from 1974, stains and all. Still measures in ounces.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Are you open on bank holidays?</summary>
+            <div class="faq-item__answer"><p>Usually closed. If we're ever open, it'll be on the door and our answerphone the week before.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-block" id="contact">
+      <div class="container contact-block__inner">
+        <div class="contact-block__info">
+          <h2 class="contact-block__title">Come and find us</h2>
+          <p class="contact-block__phone"><a href="tel:01782633302">01782 633302</a></p>
+          <p class="contact-block__email"><a href="mailto:hello@stokebakery.co.uk">hello@stokebakery.co.uk</a></p>
+          <address class="contact-block__address">127 Bucknall Road, Stoke-On-Trent, ST1 2AB</address>
+          <p class="contact-block__hours">Tuesday – Saturday: 6:30am – 4pm<br>Sunday: 8am – 1pm<br>Monday: Closed</p>
+        </div>
+        <form class="contact-block__form" action="https://formspree.io/f/REPLACE_FORMSPREE_ID" method="POST">
+          <div class="form-field">
+            <label for="contact-name" class="form-label">Name</label>
+            <input id="contact-name" name="name" type="text" class="form-input" required>
+          </div>
+          <div class="form-field">
+            <label for="contact-email" class="form-label">Email</label>
+            <input id="contact-email" name="email" type="email" class="form-input" required>
+          </div>
+          <div class="form-field">
+            <label for="contact-message" class="form-label">Message</label>
+            <textarea id="contact-message" name="message" class="form-textarea" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <p class="site-footer__copy">Stoke Bakery, Stoke-On-Trent</p>
+        <p>Baking it properly since before your nan was born</p>
+      </div>
+      <p class="site-footer__copy">Built by <a href="https://gitfoundry.co.uk">GitFoundry</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const btn = document.querySelector('.mobile-menu-btn');
+faces>
+      const nav = document.querySelector('.site-nav');
+      if (btn && nav) {
+        btn.addEventListener('click', function () {
+          const expanded = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', !expanded);
+          this.setAttribute('aria-label', expanded ? 'Open menu' : 'Close menu');
+          nav.classList.toggle('is-open');
+        });
+      }
+    }());
+  </script>
+</body>
+</html>
